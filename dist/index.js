@@ -2043,8 +2043,8 @@ function run() {
             let commentId = null;
             child_process_1.execSync(commandToRun);
             const codeCoverageNew = (JSON.parse(fs_1.default.readFileSync('coverage-summary.json').toString()));
-            child_process_1.execSync('/usr/bin/git fetch');
-            child_process_1.execSync('/usr/bin/git stash');
+            // execSync('/usr/bin/git fetch')
+            // execSync('/usr/bin/git stash')
             child_process_1.execSync(`/usr/bin/git checkout --progress --force ${branchNameBase}`);
             if (commandAfterSwitch) {
                 child_process_1.execSync(commandAfterSwitch);

@@ -32,7 +32,6 @@ async function run(): Promise<void> {
     )
     // execSync('/usr/bin/git fetch')
     // execSync('/usr/bin/git stash')
-    console.log('HEY!!!!!!!!!!!!!!!!!!!')
     execSync(`/usr/bin/git checkout --progress --force ${branchNameBase}`)
     if (commandAfterSwitch) {
       execSync(commandAfterSwitch)
