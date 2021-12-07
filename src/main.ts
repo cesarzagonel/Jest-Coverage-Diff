@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
 import {execSync} from 'child_process'
+import { exec } from '@actions/exec';
 import fs from 'fs'
 import {CoverageReport} from './Model/CoverageReport'
 import {DiffChecker} from './DiffChecker'
@@ -30,9 +31,8 @@ async function run(): Promise<void> {
     const codeCoverageNew = <CoverageReport>(
       JSON.parse(fs.readFileSync('coverage-summary.json').toString())
     )
-    execSync('/usr/bin/git fetch')
-    execSync('/usr/bin/git stash')
-    execSync(`/usr/bin/git checkout --progress --force ${branchNameBase}`)
+    await exec(`git fetch --all --depth=1`)
+    await exec(`git checkout -f ${branchNameBase}`)
     if (commandAfterSwitch) {
       execSync(commandAfterSwitch)
     }
