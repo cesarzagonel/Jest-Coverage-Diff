@@ -2392,9 +2392,8 @@ function run() {
             let commentId = null;
             child_process_1.execSync(commandToRun);
             const codeCoverageNew = (JSON.parse(fs_1.default.readFileSync('coverage-summary.json').toString()));
-            yield exec_1.exec('/usr/bin/git fetch');
-            yield exec_1.exec('/usr/bin/git stash');
-            yield exec_1.exec(`/usr/bin/git checkout --progress --force ${branchNameBase}`);
+            yield exec_1.exec('git fetch --all --depth=1');
+            yield exec_1.exec(`git checkout -f ${branchNameBase}`);
             if (commandAfterSwitch) {
                 child_process_1.execSync(commandAfterSwitch);
             }

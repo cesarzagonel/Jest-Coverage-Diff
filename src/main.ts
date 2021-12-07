@@ -31,9 +31,8 @@ async function run(): Promise<void> {
     const codeCoverageNew = <CoverageReport>(
       JSON.parse(fs.readFileSync('coverage-summary.json').toString())
     )
-    await exec('/usr/bin/git fetch')
-    await exec('/usr/bin/git stash')
-    await exec(`/usr/bin/git checkout --progress --force ${branchNameBase}`)
+    await exec('git fetch --all --depth=1')
+    await exec(`git checkout -f ${branchNameBase}`)
     if (commandAfterSwitch) {
       execSync(commandAfterSwitch)
     }
